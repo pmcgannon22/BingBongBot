@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+
+<style>
+.modal-footer {   border-top: 0px; }
+</style>
+
+{% endblock %}
+{% block nav %}{% endblock %}
+
+{% block content %}
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">BingBong - GroupMe Bot</h1>
+      </div>
+      <div class="modal-body text-center">
+            <a class="btn btn-default text-center" role="button" href="{{ GROUPME_AUTH_URL }}">
+                    <img src="{% static 'img/groupme-logo.png' %}" width="30" />
+                    <span style="margin: 0 3px">Sign in with GroupMe</span>
+            </a>
+      </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

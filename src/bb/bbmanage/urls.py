@@ -15,16 +15,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from django.conf import settings
-from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
+from bbmanage import views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^manage/', include('bbmanage.urls')),
+    url(r'^$', views.bots),
+    url(r'^login$', views.login),
+    url(r'^oauth$', views.oauth),
+    #url(r'^logout$', views.logout, name='logout'),
 ]
-
-if settings.DEBUG:
-    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-    urlpatterns += staticfiles_urlpatterns()

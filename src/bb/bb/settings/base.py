@@ -11,10 +11,21 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys
+from os.path import abspath, basename, dirname, join, normpath
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#absolute filesystem path to this Django project directory.
+BASE_DIR = DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
+#Site name
+SITE_NAME = basename(DJANGO_ROOT)
+
+#absolute filesystem path to the top-level project folder
+SITE_ROOT = dirname(DJANGO_ROOT)
+
+sys.path.append(SITE_ROOT)
+#sys.path.append(normpath(join(DJANGO_ROOT, 'apps')))
+#sys.path.append(normpath(join(DJANGO_ROOT, 'lib')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -38,7 +49,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'bootstrap3',
     'gunicorn',
+
+    'bbmanage',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,13 +90,6 @@ WSGI_APPLICATION = 'bb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -102,3 +109,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Absolute path to the directory static files should be collected to.
+# Don't put anything in this directory yourself; store your static files
+# in apps' "static/" subdirectories and in STATICFILES_DIRS.
+# Example: "/var/www/example.com/static/"
+STATIC_ROOT = normpath(join(DJANGO_ROOT, 'static'))
+
+STATICFILES_DIRS = (
+    os.path.join(SITE_ROOT, "bbmanage", "static"),
+)

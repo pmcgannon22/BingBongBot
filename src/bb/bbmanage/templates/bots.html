@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <h1>Bots</h1>
+
+    <table class="table table-borderless bot-list">
+        <thead>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Group</th>
+        </thead>
+        <tbody>
+        {% for bot in bots %}
+            <tr>
+                <td class="avatar-cell">
+                    {% if bot.avatar_url %}
+                        <img src="{{ bot.avatar_url }}.avatar" class="img-thumbnail">
+                    {% else %}
+                        <img src="{% static 'img/no-image.jpg' %}" class="img-thumbnail">
+                    {% endif %}
+                </td>
+                <td>{{ bot.name }}</td>
+                <td>{{ bot.group }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% bootstrap_button "Create New" icon="plus" button_class="btn-default" %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+body > .container {
+     padding: 60px 15px 0;
+}
+
+.bot-list .img-thumbnail {
+    padding: 2px;
+    width: 100%;
+    max-width: 100px;
+}
+
+.bot-list > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.bot-list td.avatar-cell {
+    width: 10%;
+    height: auto;
+}
+
+.bot-list td:first-child, .bot-list th:first-child {
+    padding-left: 0px;
+}
+
+
+/***
+helpers
+***/
+
+.table-borderless tbody tr td, .table-borderless tbody tr th {
+    border: none;
+}
